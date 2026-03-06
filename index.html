@@ -336,7 +336,7 @@
             <span class="text-gold tracking-[0.4em] mb-4 font-bold text-sm block">THE CORE MECHANISM</span>
             <h2 class="text-4xl md:text-5xl font-extrabold mb-12 uppercase tracking-tight">ĐỊNH GIÁ CHỨNG CHỈ QUỸ (NAV)</h2>
             
-            <div class="bg-obsidian p-10 md:p-16 rounded-[2rem] border border-gold/20 shadow-2xl relative overflow-hidden card-hover">
+            <div class="bg-obsidian p-10 md:p-16 rounded-[2rem] border border-gold/20 shadow-2xl relative overflow-hidden card-hover mb-12">
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-gold/10 rounded-full blur-3xl opacity-50"></div>
                 <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-gold/10 rounded-full blur-3xl opacity-50"></div>
                 <div class="text-2xl md:text-4xl text-gold mb-8 md:mb-10 font-sans tracking-tight relative z-10">
@@ -347,6 +347,34 @@
                     Đây là chuẩn mực quản lý của các quỹ chuyên nghiệp, đảm bảo tính công bằng tuyệt đối cho dòng tiền ra/vào.
                 </p>
             </div>
+
+            <div class="bg-glass p-8 md:p-12 rounded-[2rem] text-left card-hover border border-gold/10 relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -z-10"></div>
+                
+                <h3 class="text-2xl md:text-3xl font-bold mb-4 uppercase tracking-tight">Quy định <span class="text-gold">Giờ cắt lệnh (Cut-off Time)</span></h3>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-3xl">
+                    Nhà đầu tư nộp tiền vào ngày nào sẽ được tính giá CCQ theo NAV chốt cuối ngày đó, tùy theo thời điểm nhận tiền so với giờ cắt lệnh.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-obsidian/60 p-6 md:p-8 rounded-2xl border-l-4 border-gold transition-all hover:-translate-y-1">
+                        <div class="flex items-center gap-4 mb-4">
+                            <i class="fa-regular fa-clock text-3xl text-gold"></i>
+                            <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">Lệnh góp vốn trước 14h00</span>
+                        </div>
+                        <span class="text-xl md:text-2xl font-bold text-white block">Tính theo NAV chốt cuối <span class="text-gold">ngày T</span></span>
+                    </div>
+                    
+                    <div class="bg-obsidian/60 p-6 md:p-8 rounded-2xl border-l-4 border-gray-600 transition-all hover:-translate-y-1">
+                        <div class="flex items-center gap-4 mb-4">
+                            <i class="fa-solid fa-clock text-3xl text-gray-500"></i>
+                            <span class="text-sm font-bold text-gray-500 uppercase tracking-widest">Lệnh góp vốn sau 14h00</span>
+                        </div>
+                        <span class="text-xl md:text-2xl font-bold text-gray-300 block">Tính theo NAV chốt cuối <span class="text-white">ngày T+1</span></span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -436,7 +464,7 @@
             });
 
             reveals.forEach(reveal => {
-                revealOnScroll.observe(reveal); // Fixed variable name here
+                revealOnScroll.observe(reveal);
             });
         });
     </script>
