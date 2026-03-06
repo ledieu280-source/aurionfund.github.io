@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurion Fund | Executive Investment Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,400;0,700;0,800;1,300&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --obsidian: #050505;
+            --gold: #C5A059;
+            --gold-light: #E2C284;
+            --slate: #1A1A1A;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(197, 160, 89, 0.2);
+        }
+
+        body {
+            background-color: #000;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #fff;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            width: 1280px;
+            height: 720px;
+            margin: 40px auto;
+            background: var(--obsidian);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Decorative Elements */
+        .gold-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            z-index: 20;
+        }
+
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        h1, h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .text-gold { color: var(--gold); }
+        .border-gold { border-color: var(--border); }
+        .bg-glass { background: var(--glass); backdrop-filter: blur(10px); }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, var(--obsidian) 0%, transparent 100%);
+            z-index: 5;
+        }
+
+        /* Custom Chart Sizing */
+        .chart-svg {
+            filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.3));
+        }
+
+        .nav-formula {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        
+        .card-hover:hover {
+            background: rgba(197, 160, 89, 0.05);
+            border-color: var(--gold);
+            transition: all 0.4s ease;
+        }
+
+        /* Global Data Animation (Slide 3) */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.6; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+        .data-node {
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        /* Precise Callout Styling */
+        .callout {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        .callout-line {
+            height: 1px;
+            background: rgba(197, 160, 89, 0.4);
+        }
+
+        .callout-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--gold);
+            flex-shrink: 0;
+        }
+
+        .callout-text {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 1280px) {
+            body { transform: scale(0.8); transform-origin: top center; }
+        }
+    </style>
+</head>
+<body class="p-10">
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide">
+        <div class="gold-line"></div>
+        <div class="bg-glow" style="top: -200px; right: -200px;"></div>
+        
+        <div class="flex h-full items-center px-24">
+            <div class="w-1/2 z-10">
+                <div class="mb-8 flex items-center gap-4">
+                    <div class="h-px w-20 bg-gold"></div>
+                    <span class="text-gold tracking-[0.3em] font-light text-sm">EQUITY FUND</span>
+                </div>
+                <h1 class="text-[100px] font-extrabold leading-[0.9] mb-6">
+                    AURION<br><span class="text-gold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FUND</span>
+                </h1>
+                <p class="text-2xl font-light text-gray-400 max-w-lg leading-relaxed">
+                    Dữ liệu dẫn đường, kỷ luật dẫn lối. Kiến tạo thịnh vượng thông qua quản trị tài sản tối ưu.
+                </p>
+            </div>
+            <div class="w-1/2 h-full absolute right-0 top-0 overflow-hidden">
+                <div class="image-overlay"></div>
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
+                     alt="Kiến trúc hiện đại" 
+                     class="h-full w-full object-cover grayscale opacity-60">
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: THE VISION -->
+    <div class="slide">
+        <div class="gold-line"></div>
+        <div class="p-20 h-full flex flex-col justify-between">
+            <div>
+                <h2 class="text-6xl font-bold mb-4">TẦM NHÌN & <span class="text-gold">CAM KẾT</span></h2>
+                <div class="h-1 w-24 bg-gold mb-16"></div>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-12">
+                <div class="bg-glass p-10 border border-gold border-opacity-10 rounded-2xl card-hover">
+                    <i class="fa-solid fa-shield-halved text-4xl text-gold mb-8"></i>
+                    <h3 class="text-2xl font-bold mb-4 uppercase tracking-wider">Bảo toàn vốn</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed">Ưu tiên bảo vệ tài sản trước biến động thông qua quản trị rủi ro chủ động.</p>
+                </div>
+                <div class="bg-glass p-10 border border-gold border-opacity-10 rounded-2xl card-hover">
+                    <i class="fa-solid fa-landmark text-4xl text-gold mb-8"></i>
+                    <h3 class="text-2xl font-bold mb-4 uppercase tracking-wider">Minh bạch</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed">Hệ thống báo cáo rõ ràng, cập nhật hiệu quả đầu tư thực tế hàng kỳ.</p>
+                </div>
+                <div class="bg-glass p-10 border border-gold border-opacity-10 rounded-2xl card-hover">
+                    <i class="fa-solid fa-scale-balanced text-4xl text-gold mb-8"></i>
+                    <h3 class="text-2xl font-bold mb-4 uppercase tracking-wider">Công bằng</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed">Cơ chế định giá khoa học, đảm bảo quyền lợi tuyệt đối cho người đến trước và sau.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: STRATEGY -->
+    <div class="slide">
+        <div class="gold-line"></div>
+        <div class="flex h-full">
+            <div class="w-1/2 p-24 flex flex-col justify-center z-10">
+                <h2 class="text-6xl font-extrabold mb-10 leading-tight whitespace-nowrap">TRIẾT LÝ ĐẦU TƯ:<br><span class="text-3xl text-gold italic font-light whitespace-nowrap">Macro → Geopolitics → Capital Flow → Timing</span></h2>
+                <p class="text-xl text-gray-300 mb-10 leading-relaxed font-light">
+                    Quyết định giải ngân không dựa trên phỏng đoán ngắn hạn. Chúng tôi hành động dựa trên nền tảng phân tích kinh tế vĩ mô và biến động địa chính trị toàn cầu để đón đầu xu hướng dòng tiền một cách tốt nhất.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-5 p-5 bg-white bg-opacity-5 rounded-xl border-l-4 border-gold">
+                        <i class="fa-solid fa-microchip text-gold text-2xl"></i>
+                        <div>
+                            <h4 class="font-bold uppercase text-sm tracking-widest text-gold">Phân tích định lượng</h4>
+                            <p class="text-gray-400 text-sm italic">(Quantitative Analysis)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-5 p-5 bg-white bg-opacity-5 rounded-xl border-l-4 border-gold">
+                        <i class="fa-solid fa-earth-asia text-gold text-2xl"></i>
+                        <div>
+                            <h4 class="font-bold uppercase text-sm tracking-widest text-gold">Kinh tế Vĩ mô & Địa chính trị</h4>
+                            <p class="text-gray-400 text-sm italic">Macro-driven strategy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w-1/2 relative bg-black overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="absolute w-[500px] h-[500px] border border-gold border-opacity-20 rounded-full data-node"></div>
+                    <div class="absolute w-[350px] h-[350px] border border-gold border-opacity-10 rounded-full data-node" style="animation-delay: 1s"></div>
+                    
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
+                         alt="Mạng lưới dữ liệu toàn cầu" 
+                         class="h-full w-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-1000">
+                    
+                    <div class="absolute top-1/4 right-1/4 bg-glass border border-gold border-opacity-30 p-4 rounded-lg text-[10px] tracking-tighter uppercase font-bold text-gold">
+                        Targeting Alpha: +12.5%
+                    </div>
+                    <div class="absolute bottom-1/4 left-1/4 bg-glass border border-gold border-opacity-30 p-4 rounded-lg text-[10px] tracking-tighter uppercase font-bold text-gold">
+                        Macro Data Ingestion: Real-time
+                    </div>
+                    
+                    <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: RISK MANAGEMENT & ASSET ALLOCATION (Fixed Callout Bug) -->
+    <div class="slide">
+        <div class="gold-line"></div>
+        <div class="p-20 grid grid-cols-2 gap-10 h-full items-center">
+            
+            <!-- Left Side: 3 Principles -->
+            <div class="flex flex-col justify-center">
+                <h2 class="text-5xl font-bold mb-10 uppercase tracking-tight">Quản trị <span class="text-gold">Rủi ro</span></h2>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-5 p-6 bg-glass border border-gold border-opacity-10 rounded-2xl">
+                        <span class="text-gold text-2xl font-bold">01</span>
+                        <p class="text-lg text-gray-300 leading-relaxed">Ưu tiên bảo vệ vốn gốc trước khi nghĩ đến lợi nhuận.</p>
+                    </div>
+                    <div class="flex items-start gap-5 p-6 bg-glass border border-gold border-opacity-10 rounded-2xl">
+                        <span class="text-gold text-2xl font-bold">02</span>
+                        <p class="text-lg text-gray-300 leading-relaxed">Phân bổ tỷ trọng tài sản hợp lý để tối ưu hóa rủi ro trong mọi điều kiện thị trường.</p>
+                    </div>
+                    <div class="flex items-start gap-5 p-6 bg-glass border border-gold border-opacity-10 rounded-2xl">
+                        <span class="text-gold text-2xl font-bold">03</span>
+                        <p class="text-lg text-gray-300 leading-relaxed">Chúng tôi không đặt cược tất cả vào một kịch bản duy nhất.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side: Precise Donut Chart with Improved Callouts -->
+            <div class="flex flex-col items-center justify-center relative">
+                <div class="bg-glow" style="width: 400px; height: 400px; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.12;"></div>
+                
+                <div class="relative flex items-center justify-center w-[500px] h-[500px]">
+                    <!-- Chart (Balanced Size) -->
+                    <svg width="320" height="320" viewBox="0 0 100 100" class="chart-svg z-10">
+                        <circle cx="50" cy="50" r="42" fill="transparent" stroke="rgba(255,255,255,0.05)" stroke-width="12"/>
+                        <!-- 50% Cổ phiếu dẫn dắt -->
+                        <circle cx="50" cy="50" r="42" fill="transparent" stroke="var(--gold)" stroke-width="12" stroke-dasharray="131.9 263.8" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+                        <!-- 35% Cổ phiếu tăng trưởng -->
+                        <circle cx="50" cy="50" r="42" fill="transparent" stroke="#E2C284" stroke-width="12" stroke-dasharray="92.3 263.8" stroke-dashoffset="-131.9" transform="rotate(-90 50 50)"/>
+                        <!-- 15% Dự phòng thanh khoản -->
+                        <circle cx="50" cy="50" r="42" fill="transparent" stroke="#333" stroke-width="12" stroke-dasharray="39.6 263.8" stroke-dashoffset="-224.2" transform="rotate(-90 50 50)"/>
+                        <text x="50" y="53" fill="white" font-size="4.5" text-anchor="middle" font-weight="800" letter-spacing="1.5" opacity="0.3">ALLOCATION</text>
+                    </svg>
+
+                    <!-- Professional Callouts (Refined Positioning) -->
+                    
+                    <!-- Callout 1: Cổ phiếu dẫn dắt (Left Side - Fixed to not point inside) -->
+                    <div class="callout" style="left: -10px; top: 50%; transform: translateY(-50%);">
+                        <div class="flex items-center">
+                            <span class="callout-text mr-4 text-gold">Cổ phiếu dẫn dắt</span>
+                            <div class="callout-line w-12 opacity-40 mr-2"></div>
+                            <div class="callout-dot"></div>
+                        </div>
+                    </div>
+
+                    <!-- Callout 2: Dự phòng thanh khoản (Top Right) -->
+                    <div class="callout" style="right: 35px; top: 18%;">
+                        <div class="flex items-center">
+                            <div class="callout-dot" style="background: #555; box-shadow: 0 0 8px #555;"></div>
+                            <div class="callout-line w-10 opacity-40 ml-2 mr-4" style="transform: rotate(-30deg); transform-origin: left;"></div>
+                            <span class="callout-text text-gray-400">Dự phòng thanh khoản</span>
+                        </div>
+                    </div>
+
+                    <!-- Callout 3: Cổ phiếu tăng trưởng (Bottom Right) -->
+                    <div class="callout" style="right: 30px; bottom: 20%;">
+                        <div class="flex items-center">
+                            <div class="callout-dot" style="background: var(--gold-light); box-shadow: 0 0 8px var(--gold-light);"></div>
+                            <div class="callout-line w-10 opacity-40 ml-2 mr-4" style="transform: rotate(30deg); transform-origin: left;"></div>
+                            <span class="callout-text text-[#E2C284]">Cổ phiếu tăng trưởng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: WIN-WIN PRINCIPLE -->
+    <div class="slide">
+        <div class="gold-line"></div>
+        <div class="p-20 h-full flex flex-col justify-between">
+            <h2 class="text-6xl font-bold mb-4">Chia sẻ <span class="text-gold">Lợi ích & Rủi ro</span></h2>
+            <div class="grid grid-cols-2 gap-10">
+                <div class="bg-glass p-12 border border-gold border-opacity-10 rounded-3xl">
+                    <div class="flex items-center gap-6 mb-8">
+                        <i class="fa-solid fa-users-viewfinder text-5xl text-gold"></i>
+                        <h3 class="text-3xl font-bold uppercase tracking-tighter whitespace-nowrap">Cùng hưởng, Cùng chịu</h3>
+                    </div>
+                    <p class="text-gray-400 text-xl leading-relaxed">
+                        Quỹ chia sẻ cơ hội sinh lời, nhưng khi thị trường biến động, mọi thành viên cùng chấp nhận mức sụt giảm tương ứng tỷ lệ vốn góp.
+                    </p>
+                </div>
+                <div class="bg-red-900 bg-opacity-5 p-12 border border-red-900 border-opacity-20 rounded-3xl">
+                    <div class="flex items-center gap-6 mb-8">
+                        <i class="fa-solid fa-triangle-exclamation text-5xl text-red-500"></i>
+                        <h3 class="text-3xl font-bold uppercase tracking-tighter text-red-500">Lưu ý quan trọng</h3>
+                    </div>
+                    <p class="text-gray-400 text-xl leading-relaxed">
+                        Người quản lý quỹ không bảo lãnh rủi ro sụt giảm giá trị đầu tư. Đây là sự hợp tác thị trường, không phải kênh gửi tiết kiệm cam kết lãi suất.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: NAV LOGIC -->
+    <div class="slide">
+        <div class="gold-line"></div>
+        <div class="p-20 h-full flex flex-col items-center justify-center text-center">
+            <span class="text-gold tracking-[0.5em] mb-4 font-bold">THE CORE MECHANISM</span>
+            <h2 class="text-6xl font-extrabold mb-12 uppercase">Định giá chứng chỉ quỹ (NAV)</h2>
+            
+            <div class="bg-glass p-16 rounded-[40px] border border-gold border-opacity-20 max-w-4xl w-full">
+                <div class="text-4xl text-gold mb-10 tracking-tight font-sans not-italic whitespace-nowrap">
+                    NAV = <span class="text-white">Tổng Tài sản / Tổng Số lượng Chứng chỉ</span>
+                </div>
+                <p class="text-2xl text-gray-400 font-light leading-relaxed">
+                    Tài sản của nhà đầu tư biến động dựa trên <span class="text-white font-bold">NAV (Net Asset Value)</span>.<br>
+                    Đây là chuẩn mực quản lý của các quỹ chuyên nghiệp, đảm bảo tính công bằng tuyệt đối.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: LIQUIDITY -->
+    <div class="slide">
+        <div class="gold-line"></div>
+        <div class="p-20 h-full flex flex-col justify-between">
+            <h2 class="text-5xl font-bold uppercase">Chu kỳ <span class="text-gold">Thanh khoản</span></h2>
+            
+            <div class="grid grid-cols-4 gap-4">
+                <div class="relative pt-12">
+                    <div class="absolute top-0 left-0 text-7xl font-black text-gold opacity-10">01</div>
+                    <div class="h-1 w-full bg-gold opacity-20 mb-6"></div>
+                    <h4 class="text-xl font-bold mb-4 uppercase text-gold">Cam kết 6 tháng</h4>
+                    <p class="text-gray-400 font-light">Giai đoạn ổn định hóa danh mục, cam kết giữ vốn.</p>
+                </div>
+                <div class="relative pt-12">
+                    <div class="absolute top-0 left-0 text-7xl font-black text-gold opacity-10">02</div>
+                    <div class="h-1 w-full bg-gold opacity-20 mb-6"></div>
+                    <h4 class="text-xl font-bold mb-4 uppercase text-gold">Sau 6 tháng</h4>
+                    <p class="text-gray-400 font-light">Nhà đầu tư có quyền rút vốn linh hoạt.</p>
+                </div>
+                <div class="relative pt-12">
+                    <div class="absolute top-0 left-0 text-7xl font-black text-gold opacity-10">03</div>
+                    <div class="h-1 w-full bg-gold opacity-20 mb-6"></div>
+                    <h4 class="text-xl font-bold mb-4 uppercase text-gold">Báo trước 15 ngày</h4>
+                    <p class="text-gray-400 font-light">Thời gian tối thiểu để chuẩn bị thanh khoản tối ưu.</p>
+                </div>
+                <div class="relative pt-12">
+                    <div class="absolute top-0 left-0 text-7xl font-black text-gold opacity-10">04</div>
+                    <div class="h-1 w-full bg-gold opacity-20 mb-6"></div>
+                    <h4 class="text-xl font-bold mb-4 uppercase text-gold">Ngày 1 - 5</h4>
+                    <p class="text-gray-400 font-light">Thực hiện chuyển tiền chi trả hàng tháng.</p>
+                </div>
+            </div>
+
+            <div class="bg-gold bg-opacity-10 p-8 rounded-xl border-l-4 border-gold">
+                <p class="text-lg italic text-gray-300">"Quy định rút vốn giúp không phá vỡ cấu trúc danh mục đầu tư đang tăng trưởng, bảo vệ lợi ích chung."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: CALL TO ACTION -->
+    <div class="slide">
+        <div class="gold-line"></div>
+        <div class="bg-glow" style="bottom: -200px; left: -200px;"></div>
+        
+        <div class="flex flex-col h-full items-center justify-center text-center p-20">
+            <h2 class="text-7xl font-black mb-6 uppercase tracking-tight">Aurion <span class="text-gold">FUND</span></h2>
+            <p class="text-2xl text-gray-400 max-w-2xl mb-16 font-light italic">
+                "Dữ liệu dẫn đường, kỷ luật dẫn lối."
+            </p>
+            
+            <div class="grid grid-cols-2 gap-8 w-full max-w-4xl">
+                <div class="bg-glass border border-gold border-opacity-10 p-10 rounded-3xl">
+                    <span class="block text-gold text-sm font-bold uppercase mb-2 tracking-widest">Mức vốn tối thiểu</span>
+                    <span class="text-4xl font-bold">10,000,000 VNĐ</span>
+                </div>
+                <div class="bg-glass border border-gold border-opacity-10 p-10 rounded-3xl">
+                    <span class="block text-gold text-sm font-bold uppercase mb-2 tracking-widest">Hệ thống báo cáo</span>
+                    <span class="text-2xl font-bold">Cập nhật thời gian thực</span>
+                </div>
+            </div>
+
+            <div class="mt-20 text-gray-500 font-light flex items-center gap-6">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-globe text-gold"></i> aurionfund.vn</span>
+                <span class="text-gold opacity-30">|</span> 
+                <span class="flex items-center gap-2"><i class="fa-solid fa-envelope text-gold"></i> contact@aurionfund.vn</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
